@@ -1,0 +1,120 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define n 4
+#define m 3
+void input(float score[n][m]);
+void output(float score[n][m]);
+float average(float score[n][m]);
+float max(float score[n][m]);
+void sbaverage(float score[n][m]);
+
+
+int main()
+{
+	float score[n][m];
+	int select;
+	printf("************************\n");
+	printf("***1.input  ************\n");
+	printf("***2.output  ***********\n");
+	printf("***3.sbaverage  ********\n");
+	printf("***4.average   *********\n");
+	printf("***5.max       *********\n");
+	printf("***6.exit      *********\n");
+	printf("************************\n");
+	while(1)
+	{
+		printf("please input your select!\n");
+		scanf("%d",&select);
+		switch(select)
+		{
+		case 1:
+			printf("please input 12 score\n");
+			input(score);
+			break;
+		case 2:
+			output(score);
+			break;
+		case 3:
+			sbaverage(score);
+			break;
+		case 4:
+			printf("average=%f\n",average(score));
+			break;
+		case 5:
+			printf("max=%f",max(score));
+			break;
+		case 6:
+			exit(0);
+			break;
+		}
+	}
+return 0;
+}
+void input(float score[n][m])
+{
+	int a,b;
+	for(a=0;a<4;a++)
+	{
+		for(b=0;b<3;b++)
+		{
+			scanf("%f",&score[a][b]);
+		}
+	}
+}
+void output(float score[n][m])
+{
+	int a,b;
+	for(a=0;a<4;a++)
+	{
+		for(b=0;b<3;b++)
+		{
+			printf("  %4f",score[a][b]);
+		}
+		putchar('\n');
+	}
+}
+float average(float score[n][m])
+{
+	int a,b;
+	float sum=0,averge;
+	for(a=0;a<4;a++)
+	{
+		for(b=0;b<3;b++)
+		{
+			sum=sum+score[a][b];
+		}
+		
+	}
+	averge=sum/n/m;
+	return averge;
+}
+float max(float score[n][m])
+{
+	int a;
+	float max[4],Max;
+	for(a=0;a<4;a++)
+	{
+		max[a]=score[a][1]+score[a][2]+score[a][0];
+	}
+	Max=max[0];
+	for(a=1;a<4;a++)
+	{
+		if(Max<max[a])
+		{
+			Max=max[a];
+		}
+	}
+	return Max;
+}
+void sbaverage(float score[n][m])
+{
+	float sum1=0,sum2=0,sum3=0;
+	int a;
+	for(a=0;a<4;a++)
+	{
+		sum1=sum1+score[a][0];
+		sum2=sum2+score[a][1];
+		sum3=sum3+score[a][2];
+	}
+	printf("average1=%f\naverage2=%f\naverage3=%f\n",sum1/n,sum2/n,sum3/n);
+}
